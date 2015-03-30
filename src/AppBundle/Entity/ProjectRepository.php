@@ -17,14 +17,10 @@ class ProjectRepository extends EntityRepository
     public function getProjectForExternal($id){
 
         $qb = $this->createQueryBuilder('p')
-            ->select('p', 'rip', 'rs', 'c','vp', 'vrip', 'vrs', 'vc')
+            ->select('p', 'rip', 'rs', 'c')
             ->leftJoin("p.revisionsInProject", "rip")
             ->leftJoin("rip.revisionState", "rs")
             ->leftJoin("rs.component", "c")
-            ->leftJoin("p.values", "vp")
-            ->leftJoin("c.values", "vc")
-            ->leftJoin("rip.values", "vrip")
-            ->leftJoin("rs.values", "vrs")
             ->where("p.id = '".$id."'");
 
         $q = $qb->getQuery();

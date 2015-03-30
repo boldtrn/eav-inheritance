@@ -16,7 +16,7 @@ class Project extends Base
 {
 
     /**
-     * @OneToMany(targetEntity="AppBundle\Entity\RevisionInProject", mappedBy="project", cascade={"persist", "remove"})
+     * @OneToMany(targetEntity="AppBundle\Entity\RevisionInProject", mappedBy="project", cascade={"persist"})
      **/
     private $revisionsInProject;
 

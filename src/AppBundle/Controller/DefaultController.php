@@ -20,31 +20,6 @@ class DefaultController extends Controller
         $project = $em->getRepository("AppBundle:Project")->getProjectForExternal($id);
 
         return $this->render('default/ext.html.twig', array("ent" => $project));
-
-        /*
-        $attributes = array(
-            "DESIGNATION",
-            "PURCHASER",
-            "MATERIAL_STATUS",
-            "CARE_STATUS",
-            "ORDER_DATE",
-            "QUANTITY",
-            "DELIVERY_DATE",
-            "PRICE_PER_100",
-            "MONETARY_UNIT",
-            "START_OF_INQUIRY",
-            "DELIVERY_TIME_FROM_OFFER",
-            "SUPPLIER",
-        );
-
-        $project = array_pop($project);
-
-        $externalList = $this->projectToArray($project, $attributes);
-
-        var_dump($externalList);
-
-        return $this->render('default/index.html.twig', array("arr" => $externalList, "attributes" => $attributes));
-        */
     }
 
     /**
@@ -74,8 +49,6 @@ class DefaultController extends Controller
         $project = array_pop($project);
 
         $externalList = $this->projectToArray($project, $attributes);
-
-        var_dump($externalList);
 
         return $this->render('default/index.html.twig', array("arr" => $externalList, "attributes" => $attributes));
     }

@@ -32,7 +32,7 @@ class RevisionState extends Base
     private $component;
 
     /**
-     * @OneToMany(targetEntity="AppBundle\Entity\RevisionInProject", mappedBy="revisionState", cascade={"persist", "remove"})
+     * @OneToMany(targetEntity="AppBundle\Entity\RevisionInProject", mappedBy="revisionState", cascade={"persist"})
      **/
     private $revisionsInProject;
 

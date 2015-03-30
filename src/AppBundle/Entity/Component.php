@@ -17,7 +17,7 @@ class Component extends Base
 {
 
     /**
-     * @OneToMany(targetEntity="AppBundle\Entity\RevisionState", mappedBy="component", cascade={"persist", "remove"})
+     * @OneToMany(targetEntity="AppBundle\Entity\RevisionState", mappedBy="component", cascade={"persist"})
      **/
     private $revisionStates;
 
