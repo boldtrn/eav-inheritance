@@ -2,75 +2,125 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Component;
 use AppBundle\Entity\Project;
 use AppBundle\Entity\RevisionInProject;
-use AppBundle\Entity\RevisionState;
-use AppBundle\Entity\Value;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
-    /**
-     * @Route("/app/create", name="create")
-     */
-    public function createAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $project = new Project();
-
-        $value1 = new Value();
-        $value1->setValue("Value1");
-        $value1->setEntity($project);
-        $em->persist($value1);
-
-        $component = new Component();
-
-        $value2 = new Value();
-        $value2->setValue("Value2");
-        $value2->setEntity($component);
-        $em->persist($value2);
-
-        $revisionState = new RevisionState();
-        $revisionState->setComponent($component);
-
-        $value3 = new Value();
-        $value3->setValue("Value3");
-        $value3->setEntity($revisionState);
-        $em->persist($value3);
-
-        $revisionInProject = new RevisionInProject();
-        $revisionInProject->setProject($project);
-        $revisionInProject->setRevisionState($revisionState);
-
-        $value4 = new Value();
-        $value4->setValue("Value4");
-        $value4->setEntity($revisionInProject);
-        $em->persist($value4);
-
-
-        $em->persist($revisionInProject);
-        $em->persist($revisionState);
-        $em->persist($component);
-        $em->persist($project);
-        $em->flush();
-
-        return new Response('Created project id '.$project->getId());
-        //return $this->render('default/index.html.twig');
-    }
 
     /**
-     * @Route("/app/view/{id}", name="view")
+     * @Route("/app/view1/{id}", name="view1")
      */
-    public function viewAction($id)
+    public function view1Action($id)
     {
         $em = $this->getDoctrine();
 
         $project = $em->getRepository("AppBundle:Project")->getProjectForExternal($id);
 
-        return $this->render('default/index.html.twig', array("ent" => $project));
+        return $this->render('default/ext.html.twig', array("ent" => $project));
+
+        /*
+        $attributes = array(
+            "DESIGNATION",
+            "PURCHASER",
+            "MATERIAL_STATUS",
+            "CARE_STATUS",
+            "ORDER_DATE",
+            "QUANTITY",
+            "DELIVERY_DATE",
+            "PRICE_PER_100",
+            "MONETARY_UNIT",
+            "START_OF_INQUIRY",
+            "DELIVERY_TIME_FROM_OFFER",
+            "SUPPLIER",
+        );
+
+        $project = array_pop($project);
+
+        $externalList = $this->projectToArray($project, $attributes);
+
+        var_dump($externalList);
+
+        return $this->render('default/index.html.twig', array("arr" => $externalList, "attributes" => $attributes));
+        */
+    }
+
+    /**
+     * @Route("/app/view2/{id}", name="view2")
+     */
+    public function view2Action($id)
+    {
+        $em = $this->getDoctrine();
+
+        $project = $em->getRepository("AppBundle:Project")->getProjectForExternal($id);
+
+        $attributes = array(
+            "DESIGNATION",
+            "PURCHASER",
+            "MATERIAL_STATUS",
+            "CARE_STATUS",
+            "ORDER_DATE",
+            "QUANTITY",
+            "DELIVERY_DATE",
+            "PRICE_PER_100",
+            "MONETARY_UNIT",
+            "START_OF_INQUIRY",
+            "DELIVERY_TIME_FROM_OFFER",
+            "SUPPLIER",
+        );
+
+        $project = array_pop($project);
+
+        $externalList = $this->projectToArray($project, $attributes);
+
+        var_dump($externalList);
+
+        return $this->render('default/index.html.twig', array("arr" => $externalList, "attributes" => $attributes));
+    }
+
+    private function projectToArray(Project $project, $attributes = array())
+    {
+
+        $data = array();
+
+        foreach ($project->getRevisionsInProject() as $rip) {
+            $row = array();
+            foreach ($attributes as $attribute) {
+                $val = $this->getValueForAttribute($rip, $attribute);
+                $row[$attribute] = $val;
+            }
+            $data[] = $row;
+        }
+
+
+        return $data;
+    }
+
+    private function getValueForAttribute(RevisionInProject $rip, $attribute)
+    {
+        foreach ($rip->getProject()->getValues() as $val) {
+            if ($val->getAttribute()->getName() == $attribute) {
+                return $val;
+            }
+        }
+        foreach ($rip->getValues() as $val) {
+            if ($val->getAttribute()->getName() == $attribute) {
+                return $val;
+            }
+        }
+        foreach ($rip->getRevisionState()->getValues() as $val) {
+            if ($val->getAttribute()->getName() == $attribute) {
+                return $val;
+            }
+        }
+        foreach ($rip->getRevisionState()->getComponent()->getValues() as $val) {
+            if ($val->getAttribute()->getName() == $attribute) {
+                return $val;
+            }
+        }
+
+        return null;
     }
 }

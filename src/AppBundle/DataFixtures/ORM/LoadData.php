@@ -1,12 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: robin
- * Date: 02.03.15
- * Time: 17:03
- */
 
-namespace AppBundle\DataFixtures\MongoDB;
+namespace AppBundle\DataFixtures\ORM;
 
 
 use AppBundle\Entity\Attribute;
@@ -1220,6 +1214,72 @@ class LoadData extends AbstractFixture
         $this->addReference("Component Uninitialized Values", $component);
         $manager->persist($component);
 
+        $values = array(
+            "component" => "Comp1",
+            "attributesValues" => array(
+                "DESIGNATION" => "Component 1",
+                "PURCHASER" => "Purchaser 1",
+                "MATERIAL_STATUS" => "01",
+                "CARE_STATUS" => "02",
+                "UPDATED_AT" => "2014-08-13 15:15:35",
+                "UPDATED_BY" => "user1",
+            )
+        );
+        $this->createComponentValue($values, $manager);
+
+        $values = array(
+            "component" => "Comp007",
+            "attributesValues" => array(
+                "DESIGNATION" => "Component 007",
+                "PURCHASER" => "Purchaser 7",
+                "MATERIAL_STATUS" => "11",
+                "CARE_STATUS" => "55",
+                "UPDATED_AT" => "2014-08-13 15:15:35",
+                "UPDATED_BY" => "user1",
+            )
+        );
+        $this->createComponentValue($values, $manager);
+
+        $values = array(
+            "component" => "Comp02",
+            "attributesValues" => array(
+                "DESIGNATION" => "Component 02",
+                "PURCHASER" => "Purchaser 17",
+                "MATERIAL_STATUS" => "41",
+                "CARE_STATUS" => "56",
+                "UPDATED_AT" => "2014-08-13 15:15:35",
+                "UPDATED_BY" => "user3",
+            )
+        );
+        $this->createComponentValue($values, $manager);
+
+        $values = array(
+            "component" => "Comp13456",
+            "attributesValues" => array(
+                "DESIGNATION" => "Comp13456",
+                "PURCHASER" => "Purchaser 147",
+                "MATERIAL_STATUS" => "451",
+                "CARE_STATUS" => "536",
+                "UPDATED_AT" => "2014-08-13 15:15:35",
+                "UPDATED_BY" => "use2r3",
+            )
+        );
+        $this->createComponentValue($values, $manager);
+    }
+
+    private function createComponentValue(Array $values, ObjectManager $manager)
+    {
+
+        $component = $this->getReference($values['component']);
+        foreach ($values['attributesValues'] as $attribute => $val) {
+
+            $value = new Value();
+            $value->setAttribute($this->getReference($attribute));
+            $value->setValue($val);
+            $component->addValue($value);
+        }
+
+        $manager->persist($component);
 
     }
 

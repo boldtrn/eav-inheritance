@@ -43,6 +43,10 @@ class Value
     private $attribute;
 
 
+    public function __toString(){
+        return $this->value;
+    }
+
     /**
      * Get id
      *

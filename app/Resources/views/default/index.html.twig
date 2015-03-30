@@ -1,42 +1,24 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    Homepage.
 
-    {% for project in ent %}
+    <table>
+        <thead>
+        <tr>
+            {% for attribute in attributes %}
+                <th>{{ attribute }}</th>
+            {% endfor %}
+        </tr>
+        </thead>
+        <tbody>
+        {% for row in arr %}
+            <tr>
+                {% for attribute in attributes %}
+                    <td>{{ row[attribute] }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
-        <ul>
-            <li>
-                Values of the Project with orderNumber: {{ project.id }}
-                <ul>
-                    {% for value in project.values %}
-                        <li>{{ value.value }} - {{ value.attribute.name }}</li>
-                    {% endfor %}
-                </ul>
-                <ul>
-                    {% for revisionInProject in project.revisionsInProject %}
-                        <li>This if for Component: {{ revisionInProject.revisionState.component.id }}</li>
-                        <li>
-                            Values of the RevisionInProject of
-                            RevisionState: {{ revisionInProject.revisionState.revisionIndex }}
-                            <ul>
-                                {% for value in revisionInProject.values %}
-                                    <li>{{ value.value }} - {{ value.attribute.name }}</li>
-                                {% endfor %}
-                            </ul>
-                        </li>
-                        <li>
-                            Values of the RevisionState: {{ revisionInProject.revisionState.revisionIndex }}
-                            <ul>
-                                {% for value in revisionInProject.revisionState.values %}
-                                    <li>{{ value.value }} - {{ value.attribute.name }}</li>
-                                {% endfor %}
-                            </ul>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </li>
-        </ul>
-
-    {% endfor %}
 {% endblock %}
