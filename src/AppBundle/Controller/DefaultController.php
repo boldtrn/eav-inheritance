@@ -29,7 +29,9 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine();
 
-        $project = $em->getRepository("AppBundle:Project")->getProjectForExternal($id);
+        $projectArray = $em->getRepository("AppBundle:Project")->getProjectForExternalAsArray($id);
+
+        $projectArray = array_pop($projectArray);
 
         $attributes = array(
             "DESIGNATION",
@@ -46,25 +48,40 @@ class DefaultController extends Controller
             "SUPPLIER",
         );
 
-        $project = array_pop($project);
+        var_dump($projectArray["revisionsInProject"]);
+        //$this->traverseProjectArray($project, $attributes);
 
-        $externalList = $this->projectToArray($project, $attributes);
+        return array();
+
+        /*
+
+
+        $projectArray = array_pop($projectArray);
+
+        $externalList = $this->projectToArray($projectArray, $attributes);
 
         return $this->render('default/index.html.twig', array("arr" => $externalList, "attributes" => $attributes));
+
+        */
     }
 
-    private function projectToArray(Project $project, $attributes = array())
+    private function traverseProjectArray($projectArray = array(), $attributes = array())
     {
 
         $data = array();
 
-        foreach ($project->getRevisionsInProject() as $rip) {
+        $revisionInProject = $projectArray["revisionsInProject"];
+
+        foreach ($revisionInProject as $rip) {
+            var_dump($rip);
+            /*
             $row = array();
             foreach ($attributes as $attribute) {
                 $val = $this->getValueForAttribute($rip, $attribute);
                 $row[$attribute] = $val;
             }
             $data[] = $row;
+            */
         }
 
 
