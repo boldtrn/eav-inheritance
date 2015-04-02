@@ -6,6 +6,7 @@ use AppBundle\Entity\Project;
 use AppBundle\Entity\RevisionInProject;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Stopwatch\Stopwatch;
 
 class DefaultController extends Controller
 {
@@ -15,11 +16,13 @@ class DefaultController extends Controller
      */
     public function view1Action($id)
     {
+
+
         $em = $this->getDoctrine();
 
         $project = $em->getRepository("AppBundle:Project")->getProjectForExternal($id);
 
-        return $this->render('default/ext.html.twig', array("ent" => $project));
+        return $this->render('default/ext.html.twig', array("project" => $project));
     }
 
     /**
@@ -29,9 +32,7 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine();
 
-        $projectArray = $em->getRepository("AppBundle:Project")->getProjectForExternalAsArray($id);
-
-        $projectArray = array_pop($projectArray);
+        $project = $em->getRepository("AppBundle:Project")->getProjectForExternal($id);
 
         $attributes = array(
             "DESIGNATION",
@@ -48,40 +49,24 @@ class DefaultController extends Controller
             "SUPPLIER",
         );
 
-        var_dump($projectArray["revisionsInProject"]);
-        //$this->traverseProjectArray($project, $attributes);
-
-        return array();
-
-        /*
-
-
-        $projectArray = array_pop($projectArray);
-
-        $externalList = $this->projectToArray($projectArray, $attributes);
+        //var_dump($project["revisionsInProject"]);
+        $externalList = $this->traverseProjectArray($project, $attributes);
 
         return $this->render('default/index.html.twig', array("arr" => $externalList, "attributes" => $attributes));
-
-        */
     }
 
-    private function traverseProjectArray($projectArray = array(), $attributes = array())
+    private function traverseProjectArray(Project $project, $attributes = array())
     {
 
         $data = array();
 
-        $revisionInProject = $projectArray["revisionsInProject"];
-
-        foreach ($revisionInProject as $rip) {
-            var_dump($rip);
-            /*
+        foreach ($project->getRevisionsInProject() as $rip) {
             $row = array();
             foreach ($attributes as $attribute) {
                 $val = $this->getValueForAttribute($rip, $attribute);
                 $row[$attribute] = $val;
             }
             $data[] = $row;
-            */
         }
 
 

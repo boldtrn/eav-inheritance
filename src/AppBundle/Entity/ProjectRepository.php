@@ -3,7 +3,9 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Query;
+use Symfony\Component\Stopwatch\Stopwatch;
 
 /**
  * ProjectRepository
@@ -17,15 +19,18 @@ class ProjectRepository extends EntityRepository
     public function getProjectForExternal($id){
 
         $qb = $this->createQueryBuilder('p')
-            ->select('p', 'rip', 'rs', 'c')
+            ->select('p', 'rip', 'rs', 'c', 'ripv', 'rsv', 'cv')
             ->leftJoin("p.revisionsInProject", "rip")
             ->leftJoin("rip.revisionState", "rs")
             ->leftJoin("rs.component", "c")
+            ->leftJoin("c.values", "cv")
+            ->leftJoin("rs.values", "rsv")
+            ->leftJoin("rip.values", "ripv")
             ->where("p.id = '".$id."'");
 
         $q = $qb->getQuery();
 
-        return $q->getResult();
+        return $q->getSingleResult();
     }
 
     public function getProjectForExternalAsArray($id){
@@ -41,7 +46,12 @@ class ProjectRepository extends EntityRepository
             ->leftJoin("rip.values", "ripv")
             ->where("p.id = '".$id."'");
 
+
+        //$query = $em->createQuery("SELECT u FROM MyProject\User u");
+        //$query->setFetchMode("MyProject\User", "address", \Doctrine\ORM\Mapping\ClassMetadata::FETCH_EAGER);
+
         $q = $qb->getQuery();
+
 
         return $q->getArrayResult();
     }

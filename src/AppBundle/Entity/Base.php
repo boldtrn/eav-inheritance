@@ -30,7 +30,7 @@ abstract class Base
     protected $id;
 
     /**
-     * @OneToMany(targetEntity="Value", mappedBy="entity", cascade={"persist"})
+     * @OneToMany(targetEntity="Value", mappedBy="entity", cascade={"persist"}, fetch="EAGER")
      **/
     protected $values;
 
