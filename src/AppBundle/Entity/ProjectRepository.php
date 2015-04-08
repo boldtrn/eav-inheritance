@@ -18,19 +18,23 @@ class ProjectRepository extends EntityRepository
 
     public function getProjectForExternal($id){
 
-        $qb = $this->createQueryBuilder('p')
-            ->select('p', 'rip', 'rs', 'c', 'ripv', 'rsv', 'cv')
+        $qb = $this->getEntityManager()->createQueryBuilder()
+            ->select('p', 'rip', 'rs', 'c')
+            ->from("AppBundle:Project", "p")
             ->leftJoin("p.revisionsInProject", "rip")
             ->leftJoin("rip.revisionState", "rs")
             ->leftJoin("rs.component", "c")
             ->leftJoin("c.values", "cv")
             ->leftJoin("rs.values", "rsv")
             ->leftJoin("rip.values", "ripv")
+            ->leftJoin("p.values", "pv")
             ->where("p.id = '".$id."'");
 
         $q = $qb->getQuery();
 
-        return $q->getSingleResult();
+        $result = $q->getSingleResult();
+
+        return $result;
     }
 
     public function getProjectForExternalAsArray($id){
