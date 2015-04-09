@@ -7,8 +7,8 @@
         <li>
             Values of the Project with orderNumber: {{ project.id }}
             <ul>
-                {% for value in project.values %}
-                    <li>{{ value.value }} - {{ value.attribute.name }}</li>
+                {% for key,value in project.values %}
+                    <li>{{ key }} : {{ value }}</li>
                 {% endfor %}
             </ul>
             <ul>
@@ -18,16 +18,16 @@
                         Values of the RevisionInProject of
                         RevisionState: {{ revisionInProject.revisionState.revisionIndex }}
                         <ul>
-                            {% for value in revisionInProject.values %}
-                                <li>{{ value.value }} - {{ value.attribute.name }}</li>
+                            {% for key,value in revisionInProject.values %}
+                                <li>{{ key }} : {{ value }}</li>
                             {% endfor %}
                         </ul>
                     </li>
                     <li>
                         Values of the RevisionState: {{ revisionInProject.revisionState.revisionIndex }}
                         <ul>
-                            {% for value in revisionInProject.revisionState.values %}
-                                <li>{{ value.value }} - {{ value.attribute.name }}</li>
+                            {% for key,value in revisionInProject.revisionState.values %}
+                                <li>{{ key }} : {{ value }}</li>
                             {% endfor %}
                         </ul>
                     </li>

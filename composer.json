@@ -11,7 +11,7 @@
     "require": {
         "php": ">=5.3.3",
         "symfony/symfony": "2.6.*",
-        "doctrine/orm": "2.5.*@dev",
+        "doctrine/orm": "@dev",
         "doctrine/dbal": "@dev",
         "doctrine/common": "@dev",
         "doctrine/doctrine-bundle": "@dev",
@@ -23,7 +23,8 @@
         "sensio/framework-extra-bundle": "~3.0,>=3.0.2",
         "incenteev/composer-parameter-handler": "~2.0",
         "doctrine/doctrine-fixtures-bundle": "2.2.*",
-        "symfony/stopwatch": "2.6.6"
+        "symfony/stopwatch": "2.6.6",
+        "intaro/hstore-extension": "@dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

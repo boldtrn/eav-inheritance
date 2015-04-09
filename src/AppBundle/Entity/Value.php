@@ -31,12 +31,6 @@ class Value
     private $value;
 
     /**
-     * @ManyToOne(targetEntity="Base", inversedBy="values")
-     * @JoinColumn(name="entity_id", referencedColumnName="id", onDelete="CASCADE")
-     **/
-    private $entity;
-
-    /**
      * @ManyToOne(targetEntity="AppBundle\Entity\Attribute")
      * @JoinColumn(name="attribute_name", referencedColumnName="name")
      **/
@@ -78,29 +72,6 @@ class Value
     public function getValue()
     {
         return $this->value;
-    }
-
-    /**
-     * Set entity
-     *
-     * @param \AppBundle\Entity\Base $entity
-     * @return Value
-     */
-    public function setEntity(\AppBundle\Entity\Base $entity = null)
-    {
-        $this->entity = $entity;
-
-        return $this;
-    }
-
-    /**
-     * Get entity
-     *
-     * @return \AppBundle\Entity\Base 
-     */
-    public function getEntity()
-    {
-        return $this->entity;
     }
 
     /**

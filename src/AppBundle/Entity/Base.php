@@ -2,13 +2,12 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\DiscriminatorColumn;
 use Doctrine\ORM\Mapping\DiscriminatorMap;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\InheritanceType;
-use Doctrine\ORM\Mapping\OneToMany;
+use Intaro\HStore\Doctrine\Types\HStoreType;
 
 /**
  * Base Class for Inheritance
@@ -30,7 +29,7 @@ abstract class Base
     protected $id;
 
     /**
-     * @OneToMany(targetEntity="Value", mappedBy="entity", cascade={"persist"}, fetch="EAGER")
+     * @ORM\Column(name="values", type="hstore", nullable=true)
      **/
     protected $values;
 
@@ -41,8 +40,6 @@ abstract class Base
         }else{
             $this->id = $id;
         }
-
-        $this->values = new ArrayCollection();
     }
 
     /**
@@ -56,33 +53,32 @@ abstract class Base
     }
 
     /**
-     * Add values
+     * Add a value
      *
-     * @param \AppBundle\Entity\Value $values
+     * @param $key
+     * @param $value
      * @return Base
      */
-    public function addValue(\AppBundle\Entity\Value $values)
+    public function addValue($key, $value)
     {
-        $this->values[] = $values;
-        $values->setEntity($this);
-
+        $this->values[$key] = $value;
         return $this;
     }
 
     /**
-     * Remove values
+     * Removes a Value
      *
-     * @param \AppBundle\Entity\Value $values
      */
-    public function removeValue(\AppBundle\Entity\Value $values)
+    public function removeValue($key)
     {
-        $this->values->removeElement($values);
+        // TODO Implement
+        //$this->values->removeElement($values);
     }
 
     /**
      * Get values
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getValues()
     {

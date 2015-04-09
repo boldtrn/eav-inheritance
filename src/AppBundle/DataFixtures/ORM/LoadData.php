@@ -8,7 +8,6 @@ use AppBundle\Entity\Component;
 use AppBundle\Entity\Project;
 use AppBundle\Entity\RevisionInProject;
 use AppBundle\Entity\RevisionState;
-use AppBundle\Entity\Value;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
@@ -766,12 +765,7 @@ class LoadData extends AbstractFixture
         }
 
         foreach ($values['attributesValues'] as $attribute => $val) {
-
-            $value = new Value();
-            $value->setAttribute($this->getReference($attribute));
-            $value->setValue($val);
-
-            $revision->addValue($value);
+            $revision->addValue($attribute, $val);
         }
 
         $manager->persist($revision);
@@ -786,12 +780,7 @@ class LoadData extends AbstractFixture
             $revision = $this->getReference($revision);
         }
         foreach ($values['attributesValues'] as $attribute => $val) {
-
-            $value = new Value();
-            $value->setAttribute($this->getReference($attribute));
-            $value->setValue($val);
-            $revision->addValue($value);
-
+            $revision->addValue($attribute, $val);
         }
 
         $manager->persist($revision);
@@ -1272,11 +1261,7 @@ class LoadData extends AbstractFixture
 
         $component = $this->getReference($values['component']);
         foreach ($values['attributesValues'] as $attribute => $val) {
-
-            $value = new Value();
-            $value->setAttribute($this->getReference($attribute));
-            $value->setValue($val);
-            $component->addValue($value);
+            $component->addValue($attribute, $val);
         }
 
         $manager->persist($component);
@@ -1373,11 +1358,7 @@ class LoadData extends AbstractFixture
 
         $project = $this->getReference($values['project']);
         foreach ($values['attributesValues'] as $attribute => $val) {
-
-            $value = new Value();
-            $value->setAttribute($this->getReference($attribute));
-            $value->setValue($val);
-            $project->addValue($value);
+            $project->addValue($attribute, $val);
         }
 
         $manager->persist($project);

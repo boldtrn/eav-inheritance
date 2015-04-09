@@ -24,10 +24,6 @@ class ProjectRepository extends EntityRepository
             ->leftJoin("p.revisionsInProject", "rip")
             ->leftJoin("rip.revisionState", "rs")
             ->leftJoin("rs.component", "c")
-            ->leftJoin("c.values", "cv")
-            ->leftJoin("rs.values", "rsv")
-            ->leftJoin("rip.values", "ripv")
-            ->leftJoin("p.values", "pv")
             ->where("p.id = '".$id."'");
 
         $q = $qb->getQuery();

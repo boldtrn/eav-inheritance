@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "cd783e1d5d93185cc8044593998df42f",
+    "hash": "67beb170ba62248db0ab3357ce7d11e1",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -214,16 +214,16 @@
         },
         {
             "name": "doctrine/common",
-            "version": "dev-master",
+            "version": "v2.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/common.git",
-                "reference": "bd6a9bf487f1d6086a704c97fad465c16827aa8d"
+                "reference": "cd8daf2501e10c63dced7b8b9b905844316ae9d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/common/zipball/bd6a9bf487f1d6086a704c97fad465c16827aa8d",
-                "reference": "bd6a9bf487f1d6086a704c97fad465c16827aa8d",
+                "url": "https://api.github.com/repos/doctrine/common/zipball/cd8daf2501e10c63dced7b8b9b905844316ae9d3",
+                "reference": "cd8daf2501e10c63dced7b8b9b905844316ae9d3",
                 "shasum": ""
             },
             "require": {
@@ -240,7 +240,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.5.x-dev"
+                    "dev-master": "2.6.x-dev"
                 }
             },
             "autoload": {
@@ -283,7 +283,7 @@
                 "persistence",
                 "spl"
             ],
-            "time": "2015-03-26 00:27:39"
+            "time": "2015-04-02 19:55:44"
         },
         {
             "name": "doctrine/data-fixtures",
@@ -348,12 +348,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "e25ccaeae7d3fb8c7756c603361857695c80b42b"
+                "reference": "e74407b0c558152c68f0b56698481b6fd1d6be2c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/e25ccaeae7d3fb8c7756c603361857695c80b42b",
-                "reference": "e25ccaeae7d3fb8c7756c603361857695c80b42b",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/e74407b0c558152c68f0b56698481b6fd1d6be2c",
+                "reference": "e74407b0c558152c68f0b56698481b6fd1d6be2c",
                 "shasum": ""
             },
             "require": {
@@ -411,7 +411,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2015-03-27 11:25:14"
+            "time": "2015-04-08 09:17:25"
         },
         {
             "name": "doctrine/doctrine-bundle",
@@ -815,12 +815,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/doctrine2.git",
-                "reference": "61bcfda1679b49405eba3d09ae7fa2e848a4326c"
+                "reference": "2c9093006897eb73d27a6c43beb0a9e3db1d1c88"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/61bcfda1679b49405eba3d09ae7fa2e848a4326c",
-                "reference": "61bcfda1679b49405eba3d09ae7fa2e848a4326c",
+                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/2c9093006897eb73d27a6c43beb0a9e3db1d1c88",
+                "reference": "2c9093006897eb73d27a6c43beb0a9e3db1d1c88",
                 "shasum": ""
             },
             "require": {
@@ -848,7 +848,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.5.x-dev"
+                    "dev-master": "2.6.x-dev"
                 }
             },
             "autoload": {
@@ -884,7 +884,7 @@
                 "database",
                 "orm"
             ],
-            "time": "2015-03-31 21:13:40"
+            "time": "2015-04-06 03:22:24"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -937,6 +937,54 @@
                 "parameters management"
             ],
             "time": "2013-12-07 10:10:39"
+        },
+        {
+            "name": "intaro/hstore-extension",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/intaro/hstore-extension.git",
+                "reference": "a68439bd749ed8d8d77bb44692229ff36de47ea0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/intaro/hstore-extension/zipball/a68439bd749ed8d8d77bb44692229ff36de47ea0",
+                "reference": "a68439bd749ed8d8d77bb44692229ff36de47ea0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.4"
+            },
+            "require-dev": {
+                "doctrine/orm": "~2.0",
+                "phpunit/phpunit": "~4.0"
+            },
+            "suggest": {
+                "ext-hstore": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Intaro\\HStore\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Intaro Soft",
+                    "email": "mail@intaro.ru"
+                }
+            ],
+            "description": "The HStore Extension contains DBAL type hstore and registers Doctrine type hstore",
+            "keywords": [
+                "doctrine",
+                "hstore",
+                "postgresql"
+            ],
+            "time": "2015-03-22 18:45:52"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -1235,17 +1283,17 @@
         },
         {
             "name": "sensio/framework-extra-bundle",
-            "version": "v3.0.6",
+            "version": "v3.0.7",
             "target-dir": "Sensio/Bundle/FrameworkExtraBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioFrameworkExtraBundle.git",
-                "reference": "1c3ed356bd1ff67cd71806efbb71511644035c85"
+                "reference": "5c37623576ea9e841b87dc0d85414d98fa6f7abb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/1c3ed356bd1ff67cd71806efbb71511644035c85",
-                "reference": "1c3ed356bd1ff67cd71806efbb71511644035c85",
+                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/5c37623576ea9e841b87dc0d85414d98fa6f7abb",
+                "reference": "5c37623576ea9e841b87dc0d85414d98fa6f7abb",
                 "shasum": ""
             },
             "require": {
@@ -1286,7 +1334,7 @@
                 "annotations",
                 "controllers"
             ],
-            "time": "2015-03-24 15:12:07"
+            "time": "2015-04-02 12:28:58"
         },
         {
             "name": "sensiolabs/security-checker",
@@ -1849,7 +1897,8 @@
         "doctrine/orm": 20,
         "doctrine/dbal": 20,
         "doctrine/common": 20,
-        "doctrine/doctrine-bundle": 20
+        "doctrine/doctrine-bundle": 20,
+        "intaro/hstore-extension": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
