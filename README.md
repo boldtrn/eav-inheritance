@@ -19,7 +19,7 @@ We will use the hstore Postgre type to save the Values to.
 To setup Postgre we have to execute the following:
 
 ```
-apt-get install postgresql postgresql-client 
+apt-get install postgresql postgresql-client postgresql-contrib
 apt-get install php5-pgsql
 adduser mypguser
 su - postgres
