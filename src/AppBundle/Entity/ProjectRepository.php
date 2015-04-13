@@ -37,10 +37,14 @@ class ProjectRepository extends EntityRepository
 
         $q = $this
             ->getEntityManager()
-            //->createQuery("SELECT p FROM AppBundle:Project p WHERE contains(p.values, '{\"ACTIVE\": \"1\"}')");
-            //->createQuery("SELECT p FROM AppBundle:Project p WHERE DATEDIFF(CURRENT_TIME(), p.created)");
-        ->createQuery("SELECT p FROM AppBundle:Project p WHERE p.values @> '{\"ACTIVE\": \"1\"}'");
-
+            ->createQuery("
+        SELECT p, rip, rs, c
+        FROM AppBundle:Project p
+        LEFT JOIN p.revisionsInProject rip
+        LEFT JOIN rip.revisionState rs
+        LEFT JOIN rs.component c
+        WHERE JSONB_CONTAINS( p.values @> '{\"ACTIVE\": \"1\"}' ) = TRUE
+        ");
         var_dump($q->getSQL());
 
         $result = $q->getResult();

@@ -71,7 +71,7 @@ doctrine:
         auto_mapping: true
         dql:
             string_functions:
-                DATEDIFF:         AppBundle\Query\JsonbContains
+                JSONB_CONTAINS:   AppBundle\Query\JsonbContains
                 defined:          Intaro\HStore\Doctrine\Query\DefinedFunction
                 existsAny:        Intaro\HStore\Doctrine\Query\ExistsAnyFunction
                 fetchval:         Intaro\HStore\Doctrine\Query\FetchvalFunction
