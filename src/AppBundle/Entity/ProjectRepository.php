@@ -33,27 +33,4 @@ class ProjectRepository extends EntityRepository
         return $result;
     }
 
-    public function getProjectForExternalAsArray($id){
-
-        $qb = $this->createQueryBuilder('p')
-            ->select('p', 'rip', 'rs', 'c', 'pv', 'ripv', 'rsv', 'cv')
-            ->leftJoin("p.revisionsInProject", "rip")
-            ->leftJoin("rip.revisionState", "rs")
-            ->leftJoin("rs.component", "c")
-            ->leftJoin("p.values", "pv")
-            ->leftJoin("c.values", "cv")
-            ->leftJoin("rs.values", "rsv")
-            ->leftJoin("rip.values", "ripv")
-            ->where("p.id = '".$id."'");
-
-
-        //$query = $em->createQuery("SELECT u FROM MyProject\User u");
-        //$query->setFetchMode("MyProject\User", "address", \Doctrine\ORM\Mapping\ClassMetadata::FETCH_EAGER);
-
-        $q = $qb->getQuery();
-
-
-        return $q->getArrayResult();
-    }
-
 }

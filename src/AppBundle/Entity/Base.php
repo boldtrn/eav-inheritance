@@ -7,7 +7,6 @@ use Doctrine\ORM\Mapping\DiscriminatorColumn;
 use Doctrine\ORM\Mapping\DiscriminatorMap;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\InheritanceType;
-use Intaro\HStore\Doctrine\Types\HStoreType;
 
 /**
  * Base Class for Inheritance
@@ -29,7 +28,7 @@ abstract class Base
     protected $id;
 
     /**
-     * @ORM\Column(name="values", type="hstore", nullable=true)
+     * @ORM\Column(name="values", type="jsonb", nullable=true)
      **/
     protected $values;
 

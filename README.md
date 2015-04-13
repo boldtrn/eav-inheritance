@@ -10,11 +10,17 @@ You can load testdata using: doctrine:fixtures:load
 
 You can view a list per Project here: http://127.0.0.1:8000/app/view1/<ProjectId> or here http://127.0.0.1:8000/app/view2/<ProjectId>
 
+JSONB
+===============
+
+I added the JsonbArrayType in AppBundle\Types. That basically inherits from JsonArrayType and changes json to jsonb.
+
 
 Setup Postgres
 ===============
 
-We will use the hstore Postgre type to save the Values to.
+We will use the jsonb Postgre type to save the Values to.
+Be aware that you need to install at least Postgre 9.4. The jsonb will not work with <9.4
 
 To setup Postgre we have to execute the following:
 

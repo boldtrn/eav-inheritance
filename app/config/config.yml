@@ -55,6 +55,7 @@ doctrine:
         charset:  UTF8
         types:
           hstore: Intaro\HStore\Doctrine\Types\HStoreType
+          jsonb: AppBundle\Types\JsonbArrayType
         mapping_types:
           hstore: hstore
         # if using pdo_sqlite as your database driver:

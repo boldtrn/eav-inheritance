@@ -75,23 +75,23 @@ class DefaultController extends Controller
 
     private function getValueForAttribute(RevisionInProject $rip, $attribute)
     {
-        foreach ($rip->getProject()->getValues() as $val) {
-            if ($val->getAttribute()->getName() == $attribute) {
+        foreach ($rip->getProject()->getValues() as $key => $val) {
+            if ($key == $attribute) {
                 return $val;
             }
         }
-        foreach ($rip->getValues() as $val) {
-            if ($val->getAttribute()->getName() == $attribute) {
+        foreach ($rip->getValues() as $key => $val) {
+            if ($key == $attribute) {
                 return $val;
             }
         }
-        foreach ($rip->getRevisionState()->getValues() as $val) {
-            if ($val->getAttribute()->getName() == $attribute) {
+        foreach ($rip->getRevisionState()->getValues() as $key => $val) {
+            if ($key == $attribute) {
                 return $val;
             }
         }
-        foreach ($rip->getRevisionState()->getComponent()->getValues() as $val) {
-            if ($val->getAttribute()->getName() == $attribute) {
+        foreach ($rip->getRevisionState()->getComponent()->getValues() as $key => $val) {
+            if ($key == $attribute) {
                 return $val;
             }
         }
