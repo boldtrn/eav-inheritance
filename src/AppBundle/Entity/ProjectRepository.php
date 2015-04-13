@@ -33,4 +33,20 @@ class ProjectRepository extends EntityRepository
         return $result;
     }
 
+    public function filterFunction(){
+
+        $q = $this
+            ->getEntityManager()
+            //->createQuery("SELECT p FROM AppBundle:Project p WHERE contains(p.values, '{\"ACTIVE\": \"1\"}')");
+            //->createQuery("SELECT p FROM AppBundle:Project p WHERE DATEDIFF(CURRENT_TIME(), p.created)");
+        ->createQuery("SELECT p FROM AppBundle:Project p WHERE p.values @> '{\"ACTIVE\": \"1\"}'");
+
+        var_dump($q->getSQL());
+
+        $result = $q->getResult();
+
+        var_dump($result);
+
+    }
+
 }

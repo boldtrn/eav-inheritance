@@ -58,6 +58,7 @@ doctrine:
           jsonb: AppBundle\Types\JsonbArrayType
         mapping_types:
           hstore: hstore
+          jsonb: jsonb
         # if using pdo_sqlite as your database driver:
         #   1. add the path in parameters.yml
         #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
@@ -70,7 +71,7 @@ doctrine:
         auto_mapping: true
         dql:
             string_functions:
-                contains:         Intaro\HStore\Doctrine\Query\ContainsFunction
+                DATEDIFF:         AppBundle\Query\JsonbContains
                 defined:          Intaro\HStore\Doctrine\Query\DefinedFunction
                 existsAny:        Intaro\HStore\Doctrine\Query\ExistsAnyFunction
                 fetchval:         Intaro\HStore\Doctrine\Query\FetchvalFunction

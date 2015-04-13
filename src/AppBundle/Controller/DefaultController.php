@@ -26,6 +26,20 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/app/filter/", name="view1")
+     */
+    public function filterAction()
+    {
+
+
+        $em = $this->getDoctrine();
+
+        $em->getRepository("AppBundle:Project")->filterFunction();
+
+        return $this->render('base.html.twig');
+    }
+
+    /**
      * @Route("/app/view2/{id}", name="view2")
      */
     public function view2Action($id)

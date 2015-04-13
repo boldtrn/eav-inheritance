@@ -15,6 +15,17 @@ JSONB
 
 I added the JsonbArrayType in AppBundle\Types. That basically inherits from JsonArrayType and changes json to jsonb.
 
+The ugly part:
+Right now I have not found any possibility to implement the @> functionality into Doctrine in a reasonable way (see http://stackoverflow.com/questions/29604397/doctrine-extend-parser).
+Therefore, I had to extend the Doctrine parser at Doctrine\ORM\Query\Parser at line 3325:
+```
+            case '@':
+                $this->match(Lexer::T_NONE);
+                $this->match(Lexer::T_GREATER_THAN);
+
+                return '@>';
+```
+
 
 Setup Postgres
 ===============
