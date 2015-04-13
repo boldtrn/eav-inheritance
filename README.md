@@ -28,7 +28,7 @@ Be aware that you need to install at least Postgre 9.4. The jsonb will not work 
 To setup Postgre we have to execute the following:
 
 ```
-apt-get install postgresql postgresql-client postgresql-contrib
+apt-get install postgresql postgresql-client
 apt-get install php5-pgsql
 adduser mypguser
 su - postgres
@@ -37,7 +37,4 @@ CREATE USER mypguser WITH PASSWORD 'mypguserpass';
 CREATE DATABASE mypgdatabase;
 GRANT ALL PRIVILEGES ON DATABASE mypgdatabase to mypguser;
 \q
-psql 'create extension hstore;'
-psql mypgdatabase -c 'create extension hstore;'
-psql template1 -c 'create extension hstore;'
 ```
